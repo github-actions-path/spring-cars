@@ -41,7 +41,7 @@ jobs:
       run: |
           # Run tests here
           if [ $? -ne 0 ]; then
-            if [ ${{ steps.<step_name>.outcome }} == 'failure' ]; then
+            if [ ${{ steps.{step_name}.outcome }} == 'failure' ]; then
               failure("Tests failed with an error")
             else
               failure("Tests failed with a warning")
