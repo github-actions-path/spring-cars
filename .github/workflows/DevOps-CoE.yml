@@ -1,0 +1,11 @@
+name: Spring Cars
+
+on: [push]
+
+jobs:
+  say-my-name:
+    runs-on: syr-org-v1
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2.0.0
+    - run: echo "Hi from spring-cars named app" 
