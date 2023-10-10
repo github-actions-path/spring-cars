@@ -1,9 +1,9 @@
 name: Spring Cars
 
 on:
-  pull_request:
-    branches:
-      - devops
+  #pull_request:
+  #  branches:
+  #    - devops
   push:
     branches:
       - devops
