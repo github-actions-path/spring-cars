@@ -36,15 +36,5 @@ jobs:
       shell: bash
       run: |
         rm -rf registeredImages.txt
-    - name: Run tests
-      run: |
-          # Run tests here
-          if [ $? -ne 0 ]; then
-            if: steps.{step_name}.outcome == 'failure' then
-              failure("Tests failed with an error")
-            else
-              failure("Tests failed with a warning")
-            fi
-          fi
      
         
