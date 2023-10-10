@@ -1,6 +1,14 @@
 name: Spring Cars
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - devops
+
+#on:
+#  workflow_dispatch: 
+# We can use for manual trigger this feature
+
 
 jobs:
   say-my-name:
@@ -8,4 +16,16 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2.0.0
-    - run: echo "Hi from spring-cars named app" 
+    - name: Write my console
+      run: echo "Hi from spring-cars named app"
+    - name: "Delete unused docker objects"
+      shell: pwsh
+      run: |
+        docker images
+        Start-Sleep 5
+        $images=docker images | grep syr7s | awk '{print $3}'
+        Write-Host $images
+        Foreach($imageDigest in $images){ docker image rmi $imageDigest}
+        docker images | Out-File -FilePath registeredImages.txt
+        Get-ChildItem
+      
