@@ -37,6 +37,7 @@ jobs:
       run: |
         rm -rf registeredImages.txt
     - name: Run tests
+      shell: bash
       run: |
           # Run tests here
           if [ $? -ne 0 ]; then
