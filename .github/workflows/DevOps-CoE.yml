@@ -36,6 +36,10 @@ jobs:
       shell: bash
       run: |
         rm -rf registeredImages.txt
+    - name: "Get Package version"
+      run: |
+        d=`cat build.gradle | grep "version =" | cut -d= -f2`
+        echo "Version is $d"
   testOne:
     needs: say-my-name
     runs-on: ubuntu-latest
