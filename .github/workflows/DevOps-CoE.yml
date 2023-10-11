@@ -43,7 +43,7 @@ jobs:
       - name: Get Date
         run: date
   testTwo:
-    needs: [say-my-name, testOne]
+    needs: say-my-name
     runs-on: macos-latest
     steps:
       - name: Get Date
