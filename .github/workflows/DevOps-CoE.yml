@@ -26,7 +26,7 @@ jobs:
       run: |
         docker images
         Start-Sleep 5
-        $images=docker images | grep signum | awk '{print $3}'
+        $images=docker images | grep signum | awk '{print $3}'
         Write-Host $images
         Foreach($imageDigest in $images){ docker image rmi -f $imageDigest}
         docker images | Out-File -FilePath registeredImages.txt
@@ -36,5 +36,16 @@ jobs:
       shell: bash
       run: |
         rm -rf registeredImages.txt
-     
+  testOne:
+    needs: say-my-name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Date
+        run: date
+  testTwo:
+    needs: [say-my-name, testOne]
+    runs-on: macos-latest
+    steps:
+      - name: Get Date
+        run: date
         
