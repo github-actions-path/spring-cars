@@ -26,9 +26,12 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Gradle
-      run: gradle build 
+      run: ./gradlew build
 
     - name: Publish to GitHub Packages Apache Gradle
-      run: gradle publish -PgithubUsername=${{ github.actor }} -PgithubToken=${{ secrets.GITHUB_TOKEN }}
+      run: ./gradlew publish
       env:
+        USERNAME: ${{ github.actor }}
         GITHUB_TOKEN: ${{ github.token }}
+
+
