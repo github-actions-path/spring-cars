@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.8'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id("maven-publish")
 }
 
 group = 'com.syrisa'
@@ -41,4 +42,21 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/github-actions-path/spring-cars")
+            //credentials {
+            //    username = "Syr7-s"
+            //    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            //}
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(SpringCarsApplication.java)
+        }
+    }
 }
